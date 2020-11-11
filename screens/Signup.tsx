@@ -21,6 +21,42 @@ export default function TabOneScreen() {
         <Text style={styles.text_header}>Welcome,Sign In!</Text>
       </View>
       <Animatable.View animation="fadeInUpBig" style={[styles.footer]}>
+       <Text
+          style={[
+            styles.text_footer,
+            {
+              marginTop: 35,
+            },
+          ]}
+        >
+        First Name
+        </Text>
+         <View style={styles.action}>
+          <TextInput
+            placeholder="First Name"
+            placeholderTextColor="#666666"
+            style={[styles.textInput]}
+            autoCapitalize="none"
+          />
+        </View>
+         <Text
+          style={[
+            styles.text_footer,
+            {
+              marginTop: 35,
+            },
+          ]}
+        >
+        Last Name
+        </Text>
+         <View style={styles.action}>
+          <TextInput
+            placeholder="Last Name"
+            placeholderTextColor="#666666"
+            style={[styles.textInput]}
+            autoCapitalize="none"
+          />
+        </View>
         <Text style={[styles.text_footer]}>Email ID</Text>
         <View style={styles.action}>
           <TextInput
@@ -49,12 +85,15 @@ export default function TabOneScreen() {
             autoCapitalize="none"
           />
         </View>
-
-        <TouchableOpacity>
-          <Text style={{ color: "#009387", marginTop: 15 }}>
-            Forgot password?
-          </Text>
-        </TouchableOpacity>
+  <View style={styles.action}>
+          <TextInput
+            placeholder="Confirm Password"
+            placeholderTextColor="#666666"
+            style={[styles.textInput]}
+            autoCapitalize="none"
+          />
+        </View>
+     
       </Animatable.View>
     </View>
   );
@@ -102,8 +141,6 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     alignItems:"center",
-    
-    fontSize: 18,
     paddingLeft: 10,
     color: "#05375a",
   },
