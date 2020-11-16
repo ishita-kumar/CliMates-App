@@ -89,13 +89,11 @@ const styles = StyleSheet.create({
   },
   text_header: {
     color: "#fff",
-    
     fontWeight: "bold",
     fontSize: 30,
   },
   text_footer: {
     color: "#05375a",
-  
     fontSize: 18,
   },
 
