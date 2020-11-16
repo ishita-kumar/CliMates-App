@@ -7,7 +7,8 @@ import Navigation from './navigation';
 import First from './screens/firstfile';
 import Signup from './screens/Signup';
 import Login from './screens/Login';
-
+import Articles from './screens/Articles';
+import Questions from './screens/Questions'
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,11 +19,14 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-    {/* <First></First> */}
-    <Login></Login>
-         <StatusBar /> 
-         {/* <Navigation colorScheme={colorScheme} /> */}
+         <StatusBar />
+       <Navigation colorScheme={colorScheme} />
+            {/* <First></First>  */}
       </SafeAreaProvider>
     );
   }
 }
+      // <Articles></Articles>
+  //  <Questions/>
+         {/* <Navigation colorScheme={colorScheme} /> */}
+    {/* <Login></Login> */}
