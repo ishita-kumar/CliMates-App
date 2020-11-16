@@ -10,6 +10,7 @@ import {
 import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import * as Animatable from "react-native-animatable";
+import { Icon } from "react-native-elements";
 
 export default function Settings() {
   return (
@@ -19,27 +20,64 @@ export default function Settings() {
         <Image
           source={require("../assets/images/Hero.png")}
           style={styles.logo}
-        ></Image>
+        />
         <Text style={styles.title}>Rishabh Gajra</Text>
       </View>
+
       <View style={styles.banner}>
-        <Text style={styles.options}>Email ID</Text>
-        <Text style={styles.options}>Password</Text>
-        <Text style={styles.options}>Address</Text>
+      <View style={styles.optionscontainer}>
+       <Icon
+          raised
+          name="pencil"
+          size="15"
+          type="font-awesome"
+          color="#009387"
+          onPress={() => console.log("hello")}
+        />
+       <Text style={styles.options}>Email ID</Text>
+       
+          <Text style={styles.text}>rgajra@iu.edu</Text>
       </View>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => console.log("touchable opacity pressed")}
-          >
-            <Text>Sign Up</Text>
-          </TouchableOpacity>
+        <View style={styles.optionscontainer}>
+         <Icon
+          raised
+          name="pencil"
+          size="15"
+          type="font-awesome"
+          color="#009387"
+          onPress={() => console.log("hello")}
+        />
+       <Text style={styles.options}>Password</Text>
+       
+          <Text style={styles.text}>******</Text>
+      </View>
+        <View style={styles.optionscontainer}>
+          <Icon
+          raised
+          name="pencil"
+          size="15"
+          type="font-awesome"
+          color="#009387"
+          onPress={() => console.log("hello")}
+        />
+       <Text style={styles.options}>Address</Text>
+      
+          <Text style={styles.text}>565, West Amaryllis Drive</Text>
+      </View>
+    
+      </View>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => console.log("touchable opacity pressed")}
+      >
+        <Text>Logout</Text>
+      </TouchableOpacity>
       <Animatable.Image
         animation="bounceIn"
         duraton="1500"
         source={require("../assets/images/Trees.png")}
         style={styles.Trees}
       />
-      
     </View>
   );
 }
@@ -51,11 +89,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#fff",
   },
+  text: {
+    color: "grey",
+    marginTop: 5,
+    marginLeft: 10,
+    marginTop:13,
+  },
+    optionscontainer: {
+    
+    flexDirection: "row",
+    marginRight: "auto",
+    
+  },
   logocontainer: {
     flex: 20,
     flexDirection: "row",
     marginRight: "auto",
-    padding:40,
+    padding: 40,
   },
   logo: {
     height: 50,
