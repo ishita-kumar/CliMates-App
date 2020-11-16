@@ -9,6 +9,7 @@ import Signup from './screens/Signup';
 import Login from './screens/Login';
 import Articles from './screens/Articles';
 import Questions from './screens/Questions'
+import Welldone from './screens/Settings'
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -20,7 +21,7 @@ export default function App() {
     return (
       <SafeAreaProvider>
          <StatusBar />
-       <Navigation colorScheme={colorScheme} />
+      <Welldone/>
             {/* <First></First>  */}
       </SafeAreaProvider>
     );
