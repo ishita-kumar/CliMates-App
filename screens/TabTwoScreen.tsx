@@ -11,8 +11,10 @@ import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import * as Animatable from "react-native-animatable";
 import { Icon } from "react-native-elements";
-
-export default function Settings() {
+import { connect } from 'react-redux';
+import { logIn, logOut } from '../redux/actionsFile';
+import { getUserData } from '../redux/selectors';
+function Settings(props) {
   return (
     <View style={styles.container}>
       <View style={styles.logocontainer}></View>
@@ -29,7 +31,7 @@ export default function Settings() {
        <Icon
           raised
           name="pencil"
-          size="15"
+          size={15}
           type="font-awesome"
           color="#009387"
           onPress={() => console.log("hello")}
@@ -42,7 +44,7 @@ export default function Settings() {
          <Icon
           raised
           name="pencil"
-          size="15"
+          size={15}
           type="font-awesome"
           color="#009387"
           onPress={() => console.log("hello")}
@@ -55,7 +57,7 @@ export default function Settings() {
           <Icon
           raised
           name="pencil"
-          size="15"
+          size={15}
           type="font-awesome"
           color="#009387"
           onPress={() => console.log("hello")}
@@ -68,13 +70,13 @@ export default function Settings() {
       </View>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => console.log("touchable opacity pressed")}
+        onPress={() => props.logOut()}
       >
         <Text>Logout</Text>
       </TouchableOpacity>
       <Animatable.Image
         animation="bounceIn"
-        duraton="1500"
+        duration={1500}
         source={require("../assets/images/Trees.png")}
         style={styles.Trees}
       />
@@ -93,7 +95,6 @@ const styles = StyleSheet.create({
     color: "grey",
     marginTop: 5,
     marginLeft: 10,
-    marginTop:13,
   },
     optionscontainer: {
     
@@ -125,7 +126,6 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: "#009387",
     justifyContent: "center",
-    alignItems: "center",
     borderRadius: 50,
     flexDirection: "row",
     padding: 10,
@@ -148,16 +148,6 @@ const styles = StyleSheet.create({
     paddingVertical: 50,
     paddingHorizontal: 30,
   },
-  button: {
-    alignItems: "center",
-    width: 150,
-    height: 40,
-    backgroundColor: "#fff",
-    justifyContent: "center",
-    borderRadius: 50,
-    flexDirection: "row",
-    padding: 10,
-  },
   banner: {
     flex: 100,
     backgroundColor: "#fff",
@@ -174,3 +164,10 @@ const styles = StyleSheet.create({
     width: "80%",
   },
 });
+const mapStateToProps = (state) => {
+  const userData = getUserData(state);
+  return { userData };
+};
+const mapDispatchToProps = { logIn, logOut };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
