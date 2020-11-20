@@ -1,126 +1,150 @@
-import * as React from "react";
+import React, { useState, useEffect } from 'react';
 import {
   TouchableOpacity,
   Dimensions,
   StyleSheet,
   StatusBar,
-  TextInput,
   Image,
-} from "react-native";
-import * as Animatable from "react-native-animatable";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { Text, View } from "../components/Themed";
-import { Button } from "react-native-material-ui";
-export default function TabOneScreen() {
+} from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Text, View } from '../components/Themed';
+import { Button } from 'react-native-material-ui';
+import { connect } from 'react-redux';
+import { logIn, logOut } from '../redux/actionsFile';
+import { getUserData } from '../redux/selectors';
+import { TextInput } from 'react-native-paper';
+
+function Login(props) {
+  const [user, setUser] = useState(props.userData); // 0 is this page, 1 is signup 2 is sign in
+  const handleLogin = () => {
+    console.log(user);
+    props.logIn(user);
+
+    // console.log(props.userData.userName);
+  };
   return (
     <View style={styles.container}>
-    <View style={styles.centerview}>
-    </View>
+      <View style={styles.centerview}></View>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome,Sign In!</Text>
       </View>
       <Animatable.View animation="fadeInUpBig" style={[styles.footer]}>
-        <Text style={[styles.text_footer]}>Email ID</Text>
         <View style={styles.action}>
           <TextInput
-            placeholder="Your Email ID"
-            placeholderTextColor="#666666"
-            style={[styles.textInput, {}]}
-            autoCapitalize="none"
+            label="Username"
+            selectionColor="#3DC15A"
+            underlineColor="#3DC15A"
+            style={styles.textInput}
+            value={user.userName}
+            onChangeText={(text) => setUser({ ...user, userName: text })}
           />
         </View>
-
-        <Text
-          style={[
-            styles.text_footer,
-            {
-              marginTop: 35,
-            },
-          ]}
+        <View style={styles.action}>
+          <TextInput
+            label="Password"
+            selectionColor="#3DC15A"
+            underlineColor="#3DC15A"
+            style={styles.textInput}
+            textContentType="newPassword"
+            secureTextEntry={true}
+            onChangeText={(text) => setUser({ ...user, password: text })}
+          />
+        </View>
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            width: '100%',
+            justifyContent: 'space-between',
+            backgroundColor: 'white',
+            marginTop: 20,
+          }}
         >
-          Password
-        </Text>
-        <View style={styles.action}>
-          <TextInput
-            placeholder="Your Password"
-            placeholderTextColor="#666666"
-            style={[styles.textInput]}
-            autoCapitalize="none"
-          />
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => props.setView(1)}
+          >
+            <Text>Sign Up instead</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
+            <Text>Sign In</Text>
+          </TouchableOpacity>
         </View>
-
-        <TouchableOpacity>
-          <Text style={{ color: "#009387", marginTop: 15 }}>
-            Forgot password?
-          </Text>
-        </TouchableOpacity>
       </Animatable.View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  action: {
+    width: '100%',
+    height: 80,
+    backgroundColor: 'white',
+  },
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#3DC15A",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#3DC15A',
   },
-  centerview:{
-        alignItems: "center",
-    justifyContent: "center",
+  centerview: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   header: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     paddingHorizontal: 20,
     paddingBottom: 50,
-    backgroundColor: "#3DC15A",
+    backgroundColor: '#3DC15A',
   },
   footer: {
     flex: 3,
-    width:300,
-    backgroundColor: "#fff",
+    width: 300,
+    backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingVertical: 30,
   },
   text_header: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 30,
   },
   text_footer: {
-    color: "#05375a",
+    color: '#05375a',
     fontSize: 18,
   },
 
   textInput: {
-    flex: 1,
-    alignItems:"center",
-    
-    fontSize: 18,
-    paddingLeft: 10,
-    color: "#05375a",
-  },
- 
-   button: {
-    alignItems: "center",
-     width: 150,
-    height: 40,
-    backgroundColor: "#3DC15A",
-     justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 50,
-    flexDirection: "row",
-    padding: 10
+    color: '#05375a',
+    backgroundColor: 'white',
   },
 
- 
+  button: {
+    alignItems: 'center',
+    minWidth: 100,
+    height: 40,
+    backgroundColor: '#3DC15A',
+    justifyContent: 'center',
+    borderRadius: 50,
+    flexDirection: 'row',
+    padding: 10,
+  },
+
   textSign: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
 });
+
+const mapStateToProps = (state) => {
+  const userData = getUserData(state);
+  return { userData };
+};
+const mapDispatchToProps = { logIn, logOut };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
