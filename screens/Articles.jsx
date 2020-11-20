@@ -1,106 +1,120 @@
-import * as React from "react";
+import React, {useRef, useState, useEffect} from 'react';
 import {
   TouchableOpacity,
   Dimensions,
   StyleSheet,
   SafeAreaView,
+  ScrollView ,
   StatusBar,
   Image,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import Carousel from "react-native-snap-carousel";
+import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
+const { width: screenWidth } = Dimensions.get('window')
 
 // import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { Text, View } from "../components/Themed";
+const ENTRIES1 = [
+  {
+    title: 'Beautiful and dramatic Antelope Canyon',
+    subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+    illustration: "https://i.imgur.com/UYiroysl.jpg",
+  },
+  {
+    title: 'Earlier this morning, NYC',
+    subtitle: 'Lorem ipsum dolor sit amet',
+    illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
+  },
+  {
+    title: 'White Pocket Sunset',
+    subtitle: 'Lorem ipsum dolor sit amet et nuncat ',
+    illustration: 'https://i.imgur.com/MABUbpDl.jpg',
+  },
+  {
+    title: 'Acrocorinth, Greece',
+    subtitle: 'Lorem ipsum dolor sit amet et nuncat mergitur',
+    illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
+  },
+  {
+    title: 'The lone tree, majestic landscape of New Zealand',
+    subtitle: 'Lorem ipsum dolor sit amet',
+    illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
+  },
+];
 
-export default class Articles extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeIndex: 0,
-      carouselItems: [
-        {
-          title: "Item 1",
-          text: "Text 1",
-        },
-        {
-          title: "Item 2",
-          text: "Text 2",
-        },
-        {
-          title: "Item 3",
-          text: "Text 3",
-        },
-        {
-          title: "Item 4",
-          text: "Text 4",
-        },
-        {
-          title: "Item 5",
-          text: "Text 5",
-        },
-      ],
-    };
-  }
+const MyCarousel = props => {
+  const [entries, setEntries] = useState([]);
+  const carouselRef = useRef(null);
 
-  _renderItem({ item, index }) {
+  const goForward = () => {
+    carouselRef.current.snapToNext();
+  };
+
+  useEffect(() => {
+    setEntries(ENTRIES1);
+  }, []);
+
+  const renderItem = ({item, index}, parallaxProps) => {
     return (
       <View
         style={{
-          backgroundColor: "black",
+         
           borderRadius: 20,
-          height: 150,
+         
           color: "white",
           padding: 50,
-          marginLeft: 5,
-          marginRight: 5,
+        
         }}
       >
-       <Image
-          style={{ width: 200, height: 150, position: 'absolute', borderRadius: 20, }}
-          source={require("../assets/images/glacier.jpg")}
+        <ParallaxImage
+          source={{uri: item.illustration}}
+         
+          style={styles.image}
+          parallaxFactor={0.4}
+          {...parallaxProps}
         />
-        <View style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', alignSelf: 'flex-end' }}>
-          <Text style={{ fontSize: 20, margin: 6 }}>{item.title}</Text>
-          <Text style={{ color: 'white', margin: 6 }}>{item.text}</Text>
-        </View>
-  
+        <Text style={styles.title} numberOfLines={2}>
+          {item.title}
+        </Text>
       </View>
     );
-  }
+  };
 
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <StatusBar backgroundColor="#009387" barStyle="light-content" />
+  return (
+    <SafeAreaView style={styles.container}>
+       <StatusBar backgroundColor="#009387" barStyle="light-content" />
         <Text style={[styles.title]}>Articles</Text>
         <View style={styles.header}></View>
         <View style={[styles.footer]}>
           <Text style={[styles.Articles]}>News</Text>
-          <Carousel
-            layout={"default"}
-            ref={(ref) => (this.carousel = ref)}
-            data={this.state.carouselItems}
-            sliderWidth={400}
-            itemWidth={200}
-            renderItem={this._renderItem}
-            onSnapToItem={(index) => this.setState({ activeIndex: index })}
-          />
+        
+           <Carousel
+        ref={carouselRef}
+        sliderWidth={screenWidth}
+        sliderHeight={screenWidth}
+        itemWidth={screenWidth - 60}
+        data={entries}
+        renderItem={renderItem}
+        hasParallaxImages={true}
+      />
           <Text style={[styles.Articles]}>News</Text>
           <Carousel
-            layout={"default"}
-            ref={(ref) => (this.carousel = ref)}
-            data={this.state.carouselItems}
-             sliderWidth={400}
-            itemWidth={200}
-            renderItem={this._renderItem}
-            onSnapToItem={(index) => this.setState({ activeIndex: index })}
-          />
+        ref={carouselRef}
+        sliderWidth={screenWidth}
+        sliderHeight={screenWidth}
+        itemWidth={screenWidth - 60}
+        data={entries}
+        renderItem={renderItem}
+        hasParallaxImages={true}
+      />
         </View>
+    
+     
       </SafeAreaView>
-    );
-  }
-}
+   
+  );
+};
+export default MyCarousel;
 
 const styles = StyleSheet.create({
   container: {
@@ -109,10 +123,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#3DC15A",
   },
-  logo: {
-    width: 200,
-    height: 240,
+  imageContainer: {
+    flex: 1,
+    marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
+    backgroundColor: 'white',
+    borderRadius: 8,
   },
+   image: {
+    ...StyleSheet.absoluteFillObject,
+    resizeMode: 'cover',
+  },
+ 
   Articles: {
     color: "black",
     padding: 20,
@@ -137,7 +158,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-
   textSign: {
     color: "white",
     fontWeight: "bold",
@@ -151,7 +171,6 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 20,
-
     width: "90%",
     backgroundColor: "#fff",
     borderTopLeftRadius: 10,

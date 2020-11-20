@@ -21,7 +21,7 @@ export default function App() {
     return (
       <SafeAreaProvider>
          <StatusBar />
-         <First/>
+         <Articles/>
    {/* <Navigation colorScheme={colorScheme} /> */}
       </SafeAreaProvider>
     );
