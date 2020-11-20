@@ -25,15 +25,6 @@ function TabOneScreen(props) {
     June: '5',
   };
   const [view, setView] = useState(0);
-
-  // const [user, setUser] = useState(props.userData);
-  useEffect(() => {
-    // Check if user has logged in
-    // !props.userData.loggedIn ? onButtonClick() : null;
-  }, [props.userData]);
-  const onButtonClick = () => {
-    // Restart();
-  };
   const timelineComp = Object.keys(months).map((month, id) => (
     <View style={styles.timelineContainer}>
       <View
@@ -93,7 +84,7 @@ function TabOneScreen(props) {
       <View style={styles.timeline}>{timelineComp}</View>
     </ScrollView>
   );
-  return view == 0 ? dashbaord : <FormComponent setView={setView}/>;
+  return view == 0 ? dashbaord : <FormComponent setView={setView} />;
 }
 
 const styles = StyleSheet.create({

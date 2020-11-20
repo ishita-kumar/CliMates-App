@@ -13,6 +13,12 @@ import { connect } from 'react-redux';
 import { logIn, logOut } from '../redux/actionsFile';
 import { getUserData } from '../redux/selectors';
 function QuestionOne(props) {
+  const [carbon, setCarbon] = React.useState(0);
+  const handleNext = () => {
+    props.addCarbon(Math.round(carbon * 0.453592));
+    props.setQuestion(1);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
@@ -25,25 +31,48 @@ function QuestionOne(props) {
         />
       </View>
       <View style={styles.header}>
-        <Text style={styles.text}>question 1</Text>
+        <Text style={styles.text}>
+          What has been your major diet style since your last check in?
+        </Text>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={console.log('Yes')} style={styles.button}>
-            <Text style={styles.text}>Yes</Text>
+          <TouchableOpacity onPress={() => setCarbon(0)} style={styles.button}>
+            <Text style={styles.buttonText}>Heavy Meat</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={console.log('No')} style={styles.button}>
-            <Text style={styles.text}>No</Text>
+          <TouchableOpacity
+            onPress={() => setCarbon(147)}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Average Meat</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setCarbon(257)}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Very little Meat</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setCarbon(294)}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Vegetarian</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setCarbon(331)}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Vegan</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={[styles.footer]}>
+      <View style={styles.footer}>
         <TouchableOpacity
           onPress={() => {
-            props.setQuestion(1);
+            handleNext();
           }}
           style={styles.nextQuestion}
         >
-          <Text style={styles.text}>Next Question</Text>
+          <Text style={{ ...styles.text, color: 'white' }}>Next Question</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -56,21 +85,24 @@ const styles = StyleSheet.create({
 
     backgroundColor: '#3DC15A',
   },
-
+  buttonText: {
+    fontSize: 25,
+    color: '#19285F',
+  },
   logo: {
     width: 200,
     height: 240,
   },
 
   nextQuestion: {
-    backgroundColor: '#3DC15A',
+    backgroundColor: '#812626',
     borderRadius: 10,
     paddingVertical: 15,
   },
   button: {
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 10,
-    paddingVertical: 15,
+    paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
     width: '46%',
@@ -104,7 +136,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 8,
     backgroundColor: '#3DC15A',
-    width: '90%',
+    width: '100%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingHorizontal: 30,

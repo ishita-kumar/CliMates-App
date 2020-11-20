@@ -20,25 +20,35 @@ import QuestionTwo from './QuestionTwo';
 import QuestionThree from './QuestionThree';
 import QuestionFour from './QuestionFour';
 import QuestionFive from './QuestionFive';
+import Welldone from './Welldone';
 function FormComponent(props) {
   const [question, setQuestion] = useState(0); // 0 is this page, 1 is signup 2 is sign in
+  const [carbAdded, totalCarbon] = useState(0);
+  const addCarbon = (carbs) => {
+    const preCarbs = carbAdded + carbs;
+    totalCarbon(preCarbs);
+  };
   useEffect(() => {
-    question == 5 ? reset() : null;
+    question == 6 ? reset() : null;
   }, [question]);
   const reset = () => {
+    const car = props.userData.carbonFootPrintSaved + carbAdded;
     setQuestion(0);
     props.setView(0);
+    props.logIn({ ...props.userData, carbonFootPrintSaved: car });
   };
   return question === 0 ? (
-    <QuestionOne setQuestion={setQuestion} />
+    <QuestionOne setQuestion={setQuestion} addCarbon={addCarbon} />
   ) : question == 1 ? (
-    <QuestionTwo setQuestion={setQuestion} />
+    <QuestionTwo setQuestion={setQuestion} addCarbon={addCarbon} />
   ) : question == 2 ? (
-    <QuestionThree setQuestion={setQuestion} />
+    <QuestionThree setQuestion={setQuestion} addCarbon={addCarbon} />
   ) : question == 3 ? (
-    <QuestionFour setQuestion={setQuestion} />
+    <QuestionFour setQuestion={setQuestion} addCarbon={addCarbon} />
+  ) : question == 4 ? (
+    <QuestionFive setQuestion={setQuestion} addCarbon={addCarbon} />
   ) : (
-    <QuestionFive setQuestion={setQuestion} />
+    <Welldone setQuestion={setQuestion} />
   );
 }
 
