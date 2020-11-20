@@ -24,23 +24,39 @@ import Welldone from './Welldone';
 function FormComponent(props) {
   const [question, setQuestion] = useState(0); // 0 is this page, 1 is signup 2 is sign in
   const [carbAdded, totalCarbon] = useState(0);
+  const [elecAdded, totalElec] = useState(0);
   const addCarbon = (carbs) => {
-    const preCarbs = carbAdded + carbs;
+    const preCarbs = carbAdded + Math.round(carbs / 4);
     totalCarbon(preCarbs);
+  };
+  const addKW = (e) => {
+    const kwsaved = elecAdded + e;
+    totalElec(kwsaved);
   };
   useEffect(() => {
     question == 6 ? reset() : null;
   }, [question]);
   const reset = () => {
     const car = props.userData.carbonFootPrintSaved + carbAdded;
+    totalCarbon(carbAdded);
+    const kwsavedlog = props.userData.energySaved + elecAdded;
+    totalElec(0);
     setQuestion(0);
     props.setView(0);
-    props.logIn({ ...props.userData, carbonFootPrintSaved: car });
+    props.logIn({
+      ...props.userData,
+      carbonFootPrintSaved: car,
+      energySaved: kwsavedlog,
+    });
   };
   return question === 0 ? (
     <QuestionOne setQuestion={setQuestion} addCarbon={addCarbon} />
   ) : question == 1 ? (
-    <QuestionTwo setQuestion={setQuestion} addCarbon={addCarbon} />
+    <QuestionTwo
+      setQuestion={setQuestion}
+      addCarbon={addCarbon}
+      addKW={addKW}
+    />
   ) : question == 2 ? (
     <QuestionThree setQuestion={setQuestion} addCarbon={addCarbon} />
   ) : question == 3 ? (

@@ -12,7 +12,16 @@ import { Text, View } from '../components/Themed';
 import { connect } from 'react-redux';
 import { logIn, logOut } from '../redux/actionsFile';
 import { getUserData } from '../redux/selectors';
-function QuestionFive(props) {
+import { TextInput } from 'react-native';
+
+function QuestionTwo(props) {
+  const [carbon, setCarbon] = React.useState(1125);
+  const handleNext = () => {
+    const carbo = 1125 - carbon;
+    props.addCarbon(Math.round(carbo * 0.453592 * 0.85));
+    props.setQuestion(5);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
@@ -25,25 +34,28 @@ function QuestionFive(props) {
         />
       </View>
       <View style={styles.header}>
-        <Text style={styles.text}>question 5</Text>
-
+        <Text style={styles.text}>
+          Enter the amount of miles you have driven
+        </Text>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={console.log('Yes')} style={styles.button}>
-            <Text style={styles.text}>Yes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={console.log('No')} style={styles.button}>
-            <Text style={styles.text}>No</Text>
-          </TouchableOpacity>
+          <TextInput
+            // selectionColor="#3DC15A"
+            // underlineColor="#3DC15A"
+            style={styles.textInput}
+            keyboardType={'numbers-and-punctuation'}
+            enablesReturnKeyAutomatically={true}
+            onChangeText={(text) => setCarbon(parseInt(text))}
+          />
         </View>
       </View>
-      <View style={[styles.footer]}>
+      <View style={styles.footer}>
         <TouchableOpacity
           onPress={() => {
-            props.setQuestion(5);
+            handleNext();
           }}
           style={styles.nextQuestion}
         >
-          <Text style={styles.text}>Next Question</Text>
+          <Text style={{ ...styles.text, color: 'white' }}>Next Question</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -51,26 +63,34 @@ function QuestionFive(props) {
 }
 
 const styles = StyleSheet.create({
+  textInput: {
+    width: '80%',
+    backgroundColor: 'white',
+    height: 40,
+  },
   container: {
     flex: 1,
 
     backgroundColor: '#3DC15A',
   },
-
+  buttonText: {
+    fontSize: 25,
+    color: '#19285F',
+  },
   logo: {
     width: 200,
     height: 240,
   },
 
   nextQuestion: {
-    backgroundColor: '#3DC15A',
+    backgroundColor: '#812626',
     borderRadius: 10,
     paddingVertical: 15,
   },
   button: {
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 10,
-    paddingVertical: 15,
+    paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
     width: '46%',
@@ -82,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 20,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
   header: {
     flex: 20,
@@ -104,7 +124,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 8,
     backgroundColor: '#3DC15A',
-    width: '90%',
+    width: '100%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingHorizontal: 30,
@@ -130,4 +150,4 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = { logIn, logOut };
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionFive);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionTwo);

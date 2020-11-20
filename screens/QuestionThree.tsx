@@ -12,7 +12,35 @@ import { Text, View } from '../components/Themed';
 import { connect } from 'react-redux';
 import { logIn, logOut } from '../redux/actionsFile';
 import { getUserData } from '../redux/selectors';
+import { Checkbox } from 'react-native-paper';
+
 function QuestionThree(props) {
+  const [carbon, setCarbon] = React.useState(0);
+  const [options, setOptions] = React.useState({
+    mobile: false,
+    moniter: false,
+    desktop: false,
+    cable: false,
+    coffee: false,
+  });
+  const carbonValues = {
+    mobile: 0.75,
+    moniter: 0.5,
+    desktop: 9,
+    cable: 5.8,
+    coffee: 0.75,
+  };
+  const handleNext = () => {
+    let c = carbon;
+    for (const [key, value] of Object.entries(options)) {
+      if (value) {
+        c = c + carbonValues[key];
+      }
+    }
+    props.addCarbon(Math.round(c));
+    props.setQuestion(3);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
@@ -25,25 +53,78 @@ function QuestionThree(props) {
         />
       </View>
       <View style={styles.header}>
-        <Text style={styles.text}>question 3</Text>
+        <Text style={styles.text}>
+          Which of these devices did you remember to unplug ?{' '}
+        </Text>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={console.log('Yes')} style={styles.button}>
-            <Text style={styles.text}>Yes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={console.log('No')} style={styles.button}>
-            <Text style={styles.text}>No</Text>
-          </TouchableOpacity>
+          <View style={styles.checkRow}>
+            <View style={styles.checkbox}>
+              <Checkbox
+                color="black"
+                status={options.mobile ? 'checked' : 'unchecked'}
+                onPress={() => {
+                  setOptions({ ...options, mobile: !options.mobile });
+                }}
+              />
+            </View>
+            <Text style={styles.buttonText}>Mobile Charger</Text>
+          </View>
+          <View style={styles.checkRow}>
+            <View style={styles.checkbox}>
+              <Checkbox
+                color="black"
+                status={options.moniter ? 'checked' : 'unchecked'}
+                onPress={() => {
+                  setOptions({ ...options, moniter: !options.moniter });
+                }}
+              />
+            </View>
+
+            <Text style={styles.buttonText}>A Computer Display</Text>
+          </View>
+          <View style={styles.checkRow}>
+            <View style={styles.checkbox}>
+              <Checkbox
+                status={options.desktop ? 'checked' : 'unchecked'}
+                onPress={() => {
+                  setOptions({ ...options, desktop: !options.desktop });
+                }}
+              />
+            </View>
+
+            <Text style={styles.buttonText}>Desktop</Text>
+          </View>
+
+          <View style={styles.checkRow}>
+            <View style={styles.checkbox}>
+              <Checkbox
+                status={options.cable ? 'checked' : 'unchecked'}
+                onPress={() => {
+                  setOptions({ ...options, cable: !options.cable });
+                }}
+              />
+            </View>
+
+            <Text style={styles.buttonText}>Digital Cable box</Text>
+          </View>
+
+          <View style={styles.checkRow}>
+            <View style={styles.checkbox}>
+              <Checkbox
+                status={options.coffee ? 'checked' : 'unchecked'}
+                onPress={() => {
+                  setOptions({ ...options, coffee: !options.coffee });
+                }}
+              />
+            </View>
+            <Text style={styles.buttonText}>Coffee maker</Text>
+          </View>
         </View>
       </View>
-      <View style={[styles.footer]}>
-        <TouchableOpacity
-          onPress={() => {
-            props.setQuestion(3);
-          }}
-          style={styles.nextQuestion}
-        >
-          <Text style={styles.text}>Next Question</Text>
+      <View style={styles.footer}>
+        <TouchableOpacity onPress={handleNext} style={styles.nextQuestion}>
+          <Text style={{ ...styles.text, color: 'white' }}>Next Question</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -51,26 +132,42 @@ function QuestionThree(props) {
 }
 
 const styles = StyleSheet.create({
+  checkbox: {
+    borderColor: '#19285F',
+    borderWidth: 1,
+    backgroundColor: '#3DC15A',
+    height: 35,
+  },
+  checkRow: {
+    backgroundColor: '#3DC15A',
+    display: 'flex',
+    flexDirection: 'row',
+    marginVertical: 5,
+  },
   container: {
     flex: 1,
 
     backgroundColor: '#3DC15A',
   },
-
+  buttonText: {
+    fontSize: 25,
+    color: '#19285F',
+    marginLeft: 10,
+  },
   logo: {
     width: 200,
     height: 240,
   },
 
   nextQuestion: {
-    backgroundColor: '#3DC15A',
+    backgroundColor: '#812626',
     borderRadius: 10,
     paddingVertical: 15,
   },
   button: {
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 10,
-    paddingVertical: 15,
+    paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
     width: '46%',
@@ -79,16 +176,15 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     backgroundColor: '#3DC15A',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
+    // flexWrap: 'wrap',
     marginTop: 20,
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   header: {
     flex: 20,
     backgroundColor: '#3DC15A',
     borderTopLeftRadius: 10,
-
     borderTopRightRadius: 10,
     paddingVertical: 50,
     paddingHorizontal: 30,
@@ -104,7 +200,7 @@ const styles = StyleSheet.create({
   footer: {
     flex: 8,
     backgroundColor: '#3DC15A',
-    width: '90%',
+    width: '100%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingHorizontal: 30,

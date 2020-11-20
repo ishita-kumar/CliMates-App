@@ -15,10 +15,11 @@ import { getUserData } from '../redux/selectors';
 import { TextInput } from 'react-native';
 
 function QuestionTwo(props) {
-  const [carbon, setCarbon] = React.useState(0);
+  const [carbon, setCarbon] = React.useState(877);
   const handleNext = () => {
     const carbo = 877 - carbon;
     props.addCarbon(Math.round(carbo * 0.453592 * 0.99));
+    props.addKW(carbo)
     props.setQuestion(2);
   };
 
