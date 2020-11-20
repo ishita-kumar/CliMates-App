@@ -13,15 +13,19 @@ import { connect } from 'react-redux';
 import { logIn, logOut } from '../redux/actionsFile';
 import { getUserData } from '../redux/selectors';
 import MonthComponent from '../components/Month';
-const months = {
-  October: '10',
-  September: '4',
-  August: '3',
-  July: '7',
-  June: '5',
-};
+import FormComponent from './FormComponent';
 
 function TabOneScreen(props) {
+  const months = {
+    November: Math.round(props.userData.carbonFootPrintSaved / 100),
+    October: '10',
+    September: '4',
+    August: '3',
+    July: '7',
+    June: '5',
+  };
+  const [view, setView] = useState(0);
+
   // const [user, setUser] = useState(props.userData);
   useEffect(() => {
     // Check if user has logged in
@@ -45,16 +49,13 @@ function TabOneScreen(props) {
       <MonthComponent month={month} trees={parseInt(months[month])} />
     </View>
   ));
-  return (
+  const dashbaord = (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>
             {props.userData.userName}, Your Climate Journey
           </Text>
-          {/* <TouchableOpacity style={styles.button}>
-          <Text>November</Text>
-        </TouchableOpacity> */}
         </View>
         <View style={styles.banner}>
           <Text style={styles.options}>
@@ -84,9 +85,15 @@ function TabOneScreen(props) {
           style={styles.Trees}
         />
       </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={() => setView(1)}>
+          <Text style={styles.buttonText}>Log in this week’s data</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.timeline}>{timelineComp}</View>
     </ScrollView>
   );
+  return view == 0 ? dashbaord : <FormComponent setView={setView}/>;
 }
 
 const styles = StyleSheet.create({
@@ -107,6 +114,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 40,
   },
+  buttonContainer: {
+    width: '100%',
+  },
   borderTop: {
     borderStyle: 'solid',
     borderLeftWidth: 2,
@@ -115,6 +125,9 @@ const styles = StyleSheet.create({
     left: 44,
     position: 'absolute',
     top: 30,
+  },
+  buttonText: {
+    fontSize: 20,
   },
   border: {
     borderStyle: 'solid',
@@ -184,13 +197,15 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    width: 150,
-    height: 40,
+    width: '70%',
+    height: 70,
     backgroundColor: '#3DC15A',
     justifyContent: 'center',
-    borderRadius: 50,
+    borderRadius: 20,
     flexDirection: 'row',
-    padding: 10,
+    marginTop: 20,
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   banner: {
     flex: 100,
