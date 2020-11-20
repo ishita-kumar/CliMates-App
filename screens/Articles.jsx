@@ -57,18 +57,18 @@ const MyCarousel = props => {
   const renderItem = ({item, index}, parallaxProps) => {
     return (
       <View
-        style={{
+        // style={{
          
-          borderRadius: 20,
-         
-          color: "white",
-          padding: 50,
+        //   borderRadius: 20,
+        //  height:250,
+        //   color: "white",
+        //   padding: 50,
         
-        }}
+        // }}
       >
-        <ParallaxImage
+         <ParallaxImage
           source={{uri: item.illustration}}
-         
+         containerStyle={{width:300, height:200}}
           style={styles.image}
           parallaxFactor={0.4}
           {...parallaxProps}
@@ -90,19 +90,19 @@ const MyCarousel = props => {
         
            <Carousel
         ref={carouselRef}
-        sliderWidth={screenWidth}
+        sliderWidth={screenWidth -80}
         sliderHeight={screenWidth}
-        itemWidth={screenWidth - 60}
+        itemWidth={screenWidth - 80}
         data={entries}
         renderItem={renderItem}
         hasParallaxImages={true}
       />
-          <Text style={[styles.Articles]}>News</Text>
+          <Text style={[styles.Articles]}>Carbon Footprint</Text>
           <Carousel
         ref={carouselRef}
-        sliderWidth={screenWidth}
+        sliderWidth={screenWidth -80}
         sliderHeight={screenWidth}
-        itemWidth={screenWidth - 60}
+        itemWidth={screenWidth - 80}
         data={entries}
         renderItem={renderItem}
         hasParallaxImages={true}
@@ -136,15 +136,16 @@ const styles = StyleSheet.create({
  
   Articles: {
     color: "black",
-    padding: 20,
+    // padding: 20,
     fontSize: 20,
   },
 
   title: {
     color: "#05375a",
-    marginTop: 20,
-    fontSize: 30,
+    position: "relative",
     fontWeight: "bold",
+    top: -20,
+    color:"white"
   },
   buttons: {
     alignItems: "center",
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "grey",
-    marginTop: 5,
+    position:'relative',
   },
   CardSpace: {
     width: "100%",
