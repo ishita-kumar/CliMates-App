@@ -15,53 +15,56 @@ import { logIn, logOut } from '../redux/actionsFile';
 import { getUserData } from '../redux/selectors';
 import Login from './Login';
 import Signup from './Signup';
-function TabOneScreen(props) {
-  const [view, setView] = useState(0); // 0 is this page, 1 is signup 2 is sign in
+import QuestionOne from './QuestionOne';
+import QuestionTwo from './QuestionTwo';
+import QuestionThree from './QuestionThree';
+import QuestionFour from './QuestionFour';
+import QuestionFive from './QuestionFive';
+import Welldone from './Welldone';
+function FormComponent(props) {
+  const [question, setQuestion] = useState(0); // 0 is this page, 1 is signup 2 is sign in
+  const [carbAdded, totalCarbon] = useState(0);
+  const [elecAdded, totalElec] = useState(0);
+  const addCarbon = (carbs) => {
+    const preCarbs = carbAdded + Math.round(carbs / 4);
+    totalCarbon(preCarbs);
+  };
+  const addKW = (e) => {
+    const kwsaved = elecAdded + e;
+    totalElec(kwsaved);
+  };
   useEffect(() => {
-    // Check if user has logged in
-    console.log(props.userData.userName, 'landing');
-    !props.userData.loggedIn
-      ? props.setLoggedin(false)
-      : props.setLoggedin(true);
-  }, [props.userData]);
-  const routingPage = (
-    <View style={styles.container}>
-      <StatusBar backgroundColor="#009387" barStyle="light-content" />
-      <Text>hi</Text>
-      <View style={styles.header}>
-        <Animatable.Image
-          animation="bounceIn"
-          duration={1500}
-          source={require('../assets/images/llama1.png')}
-          style={styles.logo}
-        />
-      </View>
-      <Animatable.View style={[styles.footer]} animation="fadeInUpBig">
-        <Text style={[styles.title]}>
-          Help the environment, one click at a time!
-        </Text>
-
-        <View style={styles.buttons}>
-          <Text style={styles.text}>Sign in with account</Text>
-          <TouchableOpacity style={styles.button} onPress={() => setView(2)}>
-            <Text>Sign In</Text>
-          </TouchableOpacity>
-          <Text style={styles.text}>New User? Try Now!</Text>
-          <TouchableOpacity style={styles.button} onPress={() => setView(1)}>
-            <Text>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-      </Animatable.View>
-    </View>
-  );
-  return view === 0 ? (
-    routingPage
-  ) : view == 1 ? (
-    <Signup setView={setView} />
-  ) : view == 2 ? (
-    <Login setView={setView} />
+    question == 6 ? reset() : null;
+  }, [question]);
+  const reset = () => {
+    const car = props.userData.carbonFootPrintSaved + carbAdded;
+    totalCarbon(carbAdded);
+    const kwsavedlog = props.userData.energySaved + elecAdded;
+    totalElec(0);
+    setQuestion(0);
+    props.setView(0);
+    props.logIn({
+      ...props.userData,
+      carbonFootPrintSaved: car,
+      energySaved: kwsavedlog,
+    });
+  };
+  return question === 0 ? (
+    <QuestionOne setQuestion={setQuestion} addCarbon={addCarbon} />
+  ) : question == 1 ? (
+    <QuestionTwo
+      setQuestion={setQuestion}
+      addCarbon={addCarbon}
+      addKW={addKW}
+    />
+  ) : question == 2 ? (
+    <QuestionThree setQuestion={setQuestion} addCarbon={addCarbon} />
+  ) : question == 3 ? (
+    <QuestionFour setQuestion={setQuestion} addCarbon={addCarbon} />
+  ) : question == 4 ? (
+    <QuestionFive setQuestion={setQuestion} addCarbon={addCarbon} />
   ) : (
-    routingPage
+    <Welldone setQuestion={setQuestion} />
   );
 }
 
@@ -127,4 +130,4 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = { logIn, logOut };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TabOneScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(FormComponent);
