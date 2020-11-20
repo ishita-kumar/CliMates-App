@@ -8,9 +8,9 @@ import First from './screens/firstfile';
 import Signup from './screens/Signup';
 import Login from './screens/Login';
 import Articles from './screens/Articles';
-import Questions from './screens/Questions'
-import Welldone from './screens/Settings'
-
+import Questions from './screens/Questions';
+import Welldone from './screens/Settings';
+import Clock from "./screens/clock";
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
@@ -21,12 +21,13 @@ export default function App() {
     return (
       <SafeAreaProvider>
          <StatusBar />
-      <Welldone/>
-            {/* <First></First>  */}
+   <Navigation colorScheme={colorScheme} />
       </SafeAreaProvider>
     );
   }
 }
+
+    // <Welldone/>
       // <Articles></Articles>
   //  <Questions/>
          {/* <Navigation colorScheme={colorScheme} /> */}

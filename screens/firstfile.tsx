@@ -14,18 +14,24 @@ export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
-      <Text>hi</Text>
+     
       <View style={styles.header}>
+       <Text style={[styles.title]}>
+      Enviroad
+        </Text>
         <Animatable.Image
           animation="bounceIn"
           duraton="1500"
-          source={require("../assets/images/llama1.png")}
+          source={require("../assets/images/Enviroad.png")}
           style={styles.logo}
         />
+         
       </View>
       <Animatable.View style={[styles.footer]} animation="fadeInUpBig">
+    
+
         <Text style={[styles.title]}>
-          Help the environment, one click at a time!
+     Your road to a better World!
         </Text>
 
         <View style={styles.buttons}>
@@ -54,11 +60,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#009387",
+    backgroundColor: "#3DC15A",
   },
   logo: {
-    width: 200,
-    height: 240,
+    width: 250,
+    height: 250,
   },
   title: {
     color: "#05375a",
@@ -72,12 +78,13 @@ const styles = StyleSheet.create({
   text: {
     color: "grey",
     marginTop: 5,
+   
   },
   button: {
     alignItems: "center",
     width: 150,
     height: 40,
-    backgroundColor: "#009387",
+    backgroundColor: "#3DC15A",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
@@ -93,7 +100,7 @@ const styles = StyleSheet.create({
     flex: 2,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#009387",
+    backgroundColor: "#3DC15A",
   },
   footer: {
     flex: 1,

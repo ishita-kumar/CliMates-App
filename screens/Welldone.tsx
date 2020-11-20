@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginTop:190,
   },
+
   footer: {
     flex: 4,
     backgroundColor: "#fff",

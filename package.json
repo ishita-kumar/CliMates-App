@@ -28,17 +28,21 @@
     "expo-web-browser": "~8.5.0",
     "galio-framework": "^0.7.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react-dom": "^16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-animatable": "^1.3.3",
+    "react-native-countdown-circle-timer": "^2.3.10",
+    "react-native-countdown-component": "^2.7.1",
     "react-native-elements": "^3.0.0-alpha.1",
+    "react-native-flip-timer": "0.0.5",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-material-ui": "^1.30.1",
+    "react-native-progress-circle": "^2.1.0",
     "react-native-safe-area-context": "3.1.4",
     "react-native-screens": "~2.10.1",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-vector-icons": "^7.1.0",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "^0.13.18"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
