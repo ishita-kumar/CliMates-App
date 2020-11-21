@@ -7,6 +7,7 @@ import {
   ScrollView,
   StatusBar,
   Image,
+  Linking
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import Carousel, { ParallaxImage } from "react-native-snap-carousel";
@@ -128,8 +129,9 @@ const MyCarousel = (props) => {
           style={styles.image}
           parallaxFactor={0.4}
           {...parallaxProps}
+           
         />
-        <Text style={styles.title} numberOfLines={2}>
+        <Text style={styles.title} numberOfLines={2}   onPress={ ()=>{ Linking.openURL('https://www.sciencedaily.com/releases/2020/11/201111180655.htm')}} >
           {item.title}
         </Text>
       </View>
@@ -152,6 +154,7 @@ const MyCarousel = (props) => {
             data={entries}
             renderItem={renderItem}
             hasParallaxImages={true}
+          
           />
           <Text style={[styles.Articles]}>Carbon Footprint</Text>
           <Carousel
@@ -172,6 +175,7 @@ const MyCarousel = (props) => {
             data={entries}
             renderItem={renderItem}
             hasParallaxImages={true}
+         
           />
             <Text style={[styles.Articles]}>Endangered Species</Text>
           <Carousel
