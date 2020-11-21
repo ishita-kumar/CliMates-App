@@ -1,7 +1,7 @@
 # Enviroad
 
 <img src="enviroad.png"
-width="100%" height="100%"
+width="50%" height="50%"
      alt="Design"
      style="float: center; margin-right: 10px;" />
 
