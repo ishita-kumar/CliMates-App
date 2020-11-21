@@ -1,6 +1,6 @@
 # Enviroad
 
-<img src="Landing.jpeg"
+<img src="enviroad.png"
      alt="Design"
      style="float: center; margin-right: 10px;" />
 
@@ -18,7 +18,7 @@ A Website with the following features:
 
 ## Built With
 
-- [ReactJS](https://reactnative.dev/ )
+- [ReactNative](https://reactnative.dev/ )
 
 
 ## Getting Started
