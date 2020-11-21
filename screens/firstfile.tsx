@@ -44,7 +44,7 @@ function TabOneScreen(props) {
     
 
         <Text style={[styles.title]}>
-     Your road to a better World!
+     Your road to a Greener Future!
         </Text>
 
         <View style={styles.buttons}>
