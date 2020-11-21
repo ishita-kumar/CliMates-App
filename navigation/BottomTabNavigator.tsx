@@ -6,6 +6,8 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import Articles from '../screens/Articles';
+
 import first from '../screens/firstfile';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -23,16 +25,16 @@ export default function BottomTabNavigator() {
         component={TabOneNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-home" color={color} />
           ),
         }}
       />
       <BottomTab.Screen
         name="Articles"
-        component={TabTwoNavigator}
+        component={ArticlesNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-book" color={color} />
           ),
         }}
       />
@@ -41,7 +43,7 @@ export default function BottomTabNavigator() {
         component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <TabBarIcon name="ios-person" color={color} />
           ),
         }}
       />
@@ -80,6 +82,17 @@ function TabTwoNavigator() {
         name="TabTwoScreen"
         component={TabTwoScreen}
         options={{ headerTitle: 'Settings' }}
+      />
+    </TabTwoStack.Navigator>
+  );
+}
+function ArticlesNavigator() {
+  return (
+    <TabTwoStack.Navigator>
+      <TabTwoStack.Screen
+        name="Articles"
+        component={Articles}
+        options={{ headerTitle: 'Articles' }}
       />
     </TabTwoStack.Navigator>
   );

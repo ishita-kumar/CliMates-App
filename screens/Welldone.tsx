@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Icon } from "react-native-elements";
+
 import {
   TouchableOpacity,
   Dimensions,
@@ -29,14 +31,21 @@ export default function Welldone(props) {
           Cilmate change. Afterall, you’re the one who’s going to save the
           Earth!
         </Text>
-        <TouchableOpacity
-          onPress={() => {
+       
+         <View style={styles.nextt}>
+        <Icon
+          raised
+          name="times-circle"
+          type="font-awesome"
+          color="#3DC15A"
+          size={50}
+          style={styles.nextt}
+           onPress={() => {
             props.setQuestion(6);
           }}
-          style={styles.nextQuestion}
-        >
-          <Text style={{ ...styles.text, color: 'white' }}>Next Question</Text>
-        </TouchableOpacity>
+        />
+      </View>
+        {/* times-circle */}
       </Animatable.View>
     </View>
   );
@@ -58,6 +67,10 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 200,
+  },
+    nextt: {
+    alignItems: "center",
+    justifyContent: "center",
   },
   title: {
     color: '#05375a',

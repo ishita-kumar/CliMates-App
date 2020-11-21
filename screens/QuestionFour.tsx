@@ -1,4 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
+import { Icon } from "react-native-elements";
+
 import {
   TouchableOpacity,
   Dimensions,
@@ -6,13 +8,13 @@ import {
   SafeAreaView,
   StatusBar,
   Image,
-} from 'react-native';
-import * as Animatable from 'react-native-animatable';
-import { Text, View } from '../components/Themed';
-import { connect } from 'react-redux';
-import { logIn, logOut } from '../redux/actionsFile';
-import { getUserData } from '../redux/selectors';
-import { Checkbox } from 'react-native-paper';
+} from "react-native";
+import * as Animatable from "react-native-animatable";
+import { Text, View } from "../components/Themed";
+import { connect } from "react-redux";
+import { logIn, logOut } from "../redux/actionsFile";
+import { getUserData } from "../redux/selectors";
+import { Checkbox } from "react-native-paper";
 
 function QuestionFour(props) {
   const [carbon, setCarbon] = React.useState(0);
@@ -48,13 +50,13 @@ function QuestionFour(props) {
         <Animatable.Image
           animation="bounceIn"
           duration={1500}
-          source={require('../assets/images/llama1.png')}
+          source={require("../assets/images/Recycle.png")}
           style={styles.logo}
         />
       </View>
       <View style={styles.header}>
         <Text style={styles.text}>
-          Which of the following products do you recycle?{' '}
+          Which of the following products do you recycle?{" "}
         </Text>
 
         <View style={styles.buttonContainer}>
@@ -62,7 +64,7 @@ function QuestionFour(props) {
             <View style={styles.checkbox}>
               <Checkbox
                 color="black"
-                status={options.cans ? 'checked' : 'unchecked'}
+                status={options.cans ? "checked" : "unchecked"}
                 onPress={() => {
                   setOptions({ ...options, cans: !options.cans });
                 }}
@@ -74,7 +76,7 @@ function QuestionFour(props) {
             <View style={styles.checkbox}>
               <Checkbox
                 color="black"
-                status={options.plastic ? 'checked' : 'unchecked'}
+                status={options.plastic ? "checked" : "unchecked"}
                 onPress={() => {
                   setOptions({ ...options, plastic: !options.plastic });
                 }}
@@ -86,7 +88,8 @@ function QuestionFour(props) {
           <View style={styles.checkRow}>
             <View style={styles.checkbox}>
               <Checkbox
-                status={options.glass ? 'checked' : 'unchecked'}
+                color="black"
+                status={options.glass ? "checked" : "unchecked"}
                 onPress={() => {
                   setOptions({ ...options, glass: !options.glass });
                 }}
@@ -99,7 +102,8 @@ function QuestionFour(props) {
           <View style={styles.checkRow}>
             <View style={styles.checkbox}>
               <Checkbox
-                status={options.news ? 'checked' : 'unchecked'}
+                color="black"
+                status={options.news ? "checked" : "unchecked"}
                 onPress={() => {
                   setOptions({ ...options, news: !options.news });
                 }}
@@ -112,7 +116,8 @@ function QuestionFour(props) {
           <View style={styles.checkRow}>
             <View style={styles.checkbox}>
               <Checkbox
-                status={options.mags ? 'checked' : 'unchecked'}
+                color="black"
+                status={options.mags ? "checked" : "unchecked"}
                 onPress={() => {
                   setOptions({ ...options, mags: !options.mags });
                 }}
@@ -122,10 +127,17 @@ function QuestionFour(props) {
           </View>
         </View>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity onPress={handleNext} style={styles.nextQuestion}>
-          <Text style={{ ...styles.text, color: 'white' }}>Next Question</Text>
-        </TouchableOpacity>
+      <View style={styles.nextt}>
+        <Icon
+          raised
+          name="arrow-right"
+          type="font-awesome"
+          color="#f50"
+          style={styles.nextt}
+          onPress={() => {
+            handleNext();
+          }}
+        />
       </View>
     </SafeAreaView>
   );
@@ -133,57 +145,61 @@ function QuestionFour(props) {
 
 const styles = StyleSheet.create({
   checkbox: {
-    borderColor: '#19285F',
+    borderColor: "#19285F",
     borderWidth: 1,
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
     height: 35,
   },
   checkRow: {
-    backgroundColor: '#3DC15A',
-    display: 'flex',
-    flexDirection: 'row',
+    backgroundColor: "#3DC15A",
+    display: "flex",
+    flexDirection: "row",
     marginVertical: 5,
+  },
+  nextt: {
+    backgroundColor: "#3DC15A",
+    alignItems: "center",
+    justifyContent: "center",
   },
   container: {
     flex: 1,
-
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
   },
   buttonText: {
     fontSize: 25,
-    color: '#19285F',
+    color: "#19285F",
     marginLeft: 10,
   },
   logo: {
-    width: 200,
+    width: 250,
     height: 240,
   },
 
   nextQuestion: {
-    backgroundColor: '#812626',
+    backgroundColor: "#812626",
     borderRadius: 10,
     paddingVertical: 15,
   },
   button: {
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderRadius: 10,
     paddingVertical: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '46%',
+    alignItems: "center",
+    justifyContent: "center",
+    width: "46%",
     marginTop: 20,
   },
 
   buttonContainer: {
-    backgroundColor: '#3DC15A',
-    flexDirection: 'column',
+    backgroundColor: "#3DC15A",
+    flexDirection: "column",
     // flexWrap: 'wrap',
     marginTop: 20,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
   },
   header: {
     flex: 20,
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingVertical: 50,
@@ -191,32 +207,32 @@ const styles = StyleSheet.create({
   },
   imageheader: {
     flex: 20,
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
     borderTopLeftRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderTopRightRadius: 10,
   },
   footer: {
     flex: 8,
-    backgroundColor: '#3DC15A',
-    width: '100%',
+    backgroundColor: "#3DC15A",
+    width: "100%",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingHorizontal: 30,
   },
 
   text: {
-    color: 'black',
+    color: "black",
     fontSize: 25,
-    textAlign: 'center',
+    textAlign: "center",
     letterSpacing: -0.02,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   safearea: {
     flex: 1,
     marginTop: 100,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
 });
 

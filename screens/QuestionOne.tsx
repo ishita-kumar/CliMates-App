@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React from "react";
+import { Icon } from "react-native-elements";
 import {
   TouchableOpacity,
   Dimensions,
@@ -6,12 +7,12 @@ import {
   SafeAreaView,
   StatusBar,
   Image,
-} from 'react-native';
-import * as Animatable from 'react-native-animatable';
-import { Text, View } from '../components/Themed';
-import { connect } from 'react-redux';
-import { logIn, logOut } from '../redux/actionsFile';
-import { getUserData } from '../redux/selectors';
+} from "react-native";
+import * as Animatable from "react-native-animatable";
+import { Text, View } from "../components/Themed";
+import { connect } from "react-redux";
+import { logIn, logOut } from "../redux/actionsFile";
+import { getUserData } from "../redux/selectors";
 function QuestionOne(props) {
   const [carbon, setCarbon] = React.useState(0);
   const handleNext = () => {
@@ -26,7 +27,7 @@ function QuestionOne(props) {
         <Animatable.Image
           animation="bounceIn"
           duration={1500}
-          source={require('../assets/images/llama1.png')}
+          source={require("../assets/images/Diet.png")}
           style={styles.logo}
         />
       </View>
@@ -65,15 +66,17 @@ function QuestionOne(props) {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity
+      <View style={styles.nextt}>
+        <Icon
+          raised
+          name="arrow-right"
+          type="font-awesome"
+          color="#f50"
+          style={styles.nextt}
           onPress={() => {
             handleNext();
           }}
-          style={styles.nextQuestion}
-        >
-          <Text style={{ ...styles.text, color: 'white' }}>Next Question</Text>
-        </TouchableOpacity>
+        />
       </View>
     </SafeAreaView>
   );
@@ -82,43 +85,46 @@ function QuestionOne(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
   },
   buttonText: {
-    fontSize: 25,
-    color: '#19285F',
+    fontSize: 18,
+    color: "#19285F",
   },
   logo: {
-    width: 200,
+    width: 250,
     height: 240,
   },
-
+  nextt: {
+    backgroundColor: "#3DC15A",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   nextQuestion: {
-    backgroundColor: '#812626',
+    backgroundColor: "#812626",
     borderRadius: 10,
     paddingVertical: 15,
   },
   button: {
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderRadius: 10,
     paddingVertical: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '46%',
+    alignItems: "center",
+    justifyContent: "center",
+    width: "46%",
     marginTop: 20,
   },
 
   buttonContainer: {
-    backgroundColor: '#3DC15A',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    backgroundColor: "#3DC15A",
+    flexDirection: "row",
+    flexWrap: "wrap",
     marginTop: 20,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   header: {
     flex: 20,
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
     borderTopLeftRadius: 10,
 
     borderTopRightRadius: 10,
@@ -127,32 +133,33 @@ const styles = StyleSheet.create({
   },
   imageheader: {
     flex: 20,
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
     borderTopLeftRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderTopRightRadius: 10,
   },
   footer: {
     flex: 8,
-    backgroundColor: '#3DC15A',
-    width: '100%',
+    backgroundColor: "#3DC15A",
+    width: "100%",
+
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingHorizontal: 30,
   },
 
   text: {
-    color: 'black',
+    color: "black",
     fontSize: 25,
-    textAlign: 'center',
+    textAlign: "center",
     letterSpacing: -0.02,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   safearea: {
     flex: 1,
     marginTop: 100,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
 });
 

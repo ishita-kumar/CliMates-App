@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Icon } from "react-native-elements";
 import {
   TouchableOpacity,
   Dimensions,
@@ -48,7 +49,7 @@ function QuestionThree(props) {
         <Animatable.Image
           animation="bounceIn"
           duration={1500}
-          source={require('../assets/images/llama1.png')}
+          source={require('../assets/images/Unplug.png')}
           style={styles.logo}
         />
       </View>
@@ -86,6 +87,7 @@ function QuestionThree(props) {
           <View style={styles.checkRow}>
             <View style={styles.checkbox}>
               <Checkbox
+               color="black"
                 status={options.desktop ? 'checked' : 'unchecked'}
                 onPress={() => {
                   setOptions({ ...options, desktop: !options.desktop });
@@ -99,6 +101,7 @@ function QuestionThree(props) {
           <View style={styles.checkRow}>
             <View style={styles.checkbox}>
               <Checkbox
+               color="black"
                 status={options.cable ? 'checked' : 'unchecked'}
                 onPress={() => {
                   setOptions({ ...options, cable: !options.cable });
@@ -112,6 +115,7 @@ function QuestionThree(props) {
           <View style={styles.checkRow}>
             <View style={styles.checkbox}>
               <Checkbox
+               color="black"
                 status={options.coffee ? 'checked' : 'unchecked'}
                 onPress={() => {
                   setOptions({ ...options, coffee: !options.coffee });
@@ -122,10 +126,17 @@ function QuestionThree(props) {
           </View>
         </View>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity onPress={handleNext} style={styles.nextQuestion}>
-          <Text style={{ ...styles.text, color: 'white' }}>Next Question</Text>
-        </TouchableOpacity>
+       <View style={styles.nextt}>
+        <Icon
+          raised
+          name="arrow-right"
+          type="font-awesome"
+          color="#f50"
+          style={styles.nextt}
+          onPress={() => {
+            handleNext();
+          }}
+        />
       </View>
     </SafeAreaView>
   );
@@ -137,6 +148,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#3DC15A',
     height: 35,
+  },
+    nextt: {
+    backgroundColor: "#3DC15A",
+    alignItems: "center",
+    justifyContent: "center",
   },
   checkRow: {
     backgroundColor: '#3DC15A',
@@ -155,8 +171,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   logo: {
-    width: 200,
-    height: 240,
+    width: 250,
+    height: 250,
   },
 
   nextQuestion: {

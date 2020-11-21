@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Icon } from "react-native-elements";
+
 import {
   TouchableOpacity,
   Dimensions,
@@ -30,7 +32,7 @@ function QuestionTwo(props) {
         <Animatable.Image
           animation="bounceIn"
           duration={1500}
-          source={require('../assets/images/llama1.png')}
+          source={require('../assets/images/Electricity.png')}
           style={styles.logo}
         />
       </View>
@@ -49,16 +51,19 @@ function QuestionTwo(props) {
           />
         </View>
       </View>
-      <View style={styles.footer}>
-        <TouchableOpacity
+          <View style={styles.nextt}>
+        <Icon
+          raised
+          name="arrow-right"
+          type="font-awesome"
+          color="#f50"
+          style={styles.nextt}
           onPress={() => {
             handleNext();
           }}
-          style={styles.nextQuestion}
-        >
-          <Text style={{ ...styles.text, color: 'white' }}>Next Question</Text>
-        </TouchableOpacity>
+        />
       </View>
+    
     </SafeAreaView>
   );
 }
@@ -71,7 +76,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-
     backgroundColor: '#3DC15A',
   },
   buttonText: {
@@ -79,10 +83,14 @@ const styles = StyleSheet.create({
     color: '#19285F',
   },
   logo: {
-    width: 200,
-    height: 240,
+    width: 240,
+    height: 230,
   },
-
+  nextt: {
+    backgroundColor: "#3DC15A",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   nextQuestion: {
     backgroundColor: '#812626',
     borderRadius: 10,

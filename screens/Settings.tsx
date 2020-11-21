@@ -25,46 +25,45 @@ export default function Settings() {
       </View>
 
       <View style={styles.banner}>
-      <View style={styles.optionscontainer}>
-       <Icon
-          raised
-          name="pencil"
-          size="15"
-          type="font-awesome"
-          color="#009387"
-          onPress={() => console.log("hello")}
-        />
-       <Text style={styles.options}>Email ID</Text>
-       
-          <Text style={styles.text}>rgajra@iu.edu</Text>
-      </View>
-        <View style={styles.optionscontainer}>
-         <Icon
-          raised
-          name="pencil"
-          size="15"
-          type="font-awesome"
-          color="#009387"
-          onPress={() => console.log("hello")}
-        />
-       <Text style={styles.options}>Password</Text>
-       
-          <Text style={styles.text}>******</Text>
-      </View>
         <View style={styles.optionscontainer}>
           <Icon
-          raised
-          name="pencil"
-          size="15"
-          type="font-awesome"
-          color="#009387"
-          onPress={() => console.log("hello")}
-        />
-       <Text style={styles.options}>Address</Text>
-      
+            raised
+            name="pencil"
+            size="15"
+            type="font-awesome"
+            color="#009387"
+            onPress={() => console.log("hello")}
+          />
+          <Text style={styles.options}>Email ID</Text>
+
+          <Text style={styles.text}>rgajra@iu.edu</Text>
+        </View>
+        <View style={styles.optionscontainer}>
+          <Icon
+            raised
+            name="pencil"
+            size="15"
+            type="font-awesome"
+            color="#009387"
+            onPress={() => console.log("hello")}
+          />
+          <Text style={styles.options}>Password</Text>
+
+          <Text style={styles.text}>******</Text>
+        </View>
+        <View style={styles.optionscontainer}>
+          <Icon
+            raised
+            name="pencil"
+            size="15"
+            type="font-awesome"
+            color="#009387"
+            onPress={() => console.log("hello")}
+          />
+          <Text style={styles.options}>Address</Text>
+
           <Text style={styles.text}>565, West Amaryllis Drive</Text>
-      </View>
-    
+        </View>
       </View>
       <TouchableOpacity
         style={styles.button}
@@ -87,19 +86,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#3DC15A",
   },
   text: {
     color: "grey",
     marginTop: 5,
     marginLeft: 10,
-    marginTop:13,
+    marginTop: 13,
   },
-    optionscontainer: {
-    
+  optionscontainer: {
     flexDirection: "row",
     marginRight: "auto",
-    
   },
   logocontainer: {
     flex: 20,
@@ -123,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: 150,
     height: 40,
-    backgroundColor: "#009387",
+    backgroundColor: "#3DC15A",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,

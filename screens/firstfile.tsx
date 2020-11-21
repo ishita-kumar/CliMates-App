@@ -48,13 +48,13 @@ function TabOneScreen(props) {
         </Text>
 
         <View style={styles.buttons}>
-          <Text style={styles.text}>Sign in with account</Text>
+          <Text style={styles.text}>Sign In</Text>
           <TouchableOpacity style={styles.button} onPress={() => setView(2)}>
-            <Text>Sign In</Text>
+            <Text>Log In</Text>
           </TouchableOpacity>
           <Text style={styles.text}>New User? Try Now!</Text>
           <TouchableOpacity style={styles.button} onPress={() => setView(1)}>
-            <Text>Sign Up</Text>
+            <Text>Create Account</Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>

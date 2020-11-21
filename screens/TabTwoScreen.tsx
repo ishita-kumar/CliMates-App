@@ -33,7 +33,7 @@ function Settings(props) {
           name="pencil"
           size={15}
           type="font-awesome"
-          color="#009387"
+          color="#3DC15A"
           onPress={() => console.log("hello")}
         />
        <Text style={styles.options}>Email ID</Text>
@@ -89,20 +89,22 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#3DC15A",
   },
   text: {
     color: "grey",
     marginTop: 5,
+    top:10,
     marginLeft: 10,
   },
     optionscontainer: {
-    
+      backgroundColor: "#3DC15A",
     flexDirection: "row",
     marginRight: "auto",
     
   },
   logocontainer: {
+      backgroundColor: "#3DC15A",
     flex: 20,
     flexDirection: "row",
     marginRight: "auto",
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: 150,
     height: 40,
-    backgroundColor: "#009387",
+    backgroundColor: "#fff",
     justifyContent: "center",
     borderRadius: 50,
     flexDirection: "row",
@@ -135,13 +137,14 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 20,
     padding: 10,
+    
     textAlign: "left",
     letterSpacing: -0.02,
     fontWeight: "600",
   },
   header: {
     flex: 20,
-    backgroundColor: "#fff",
+    backgroundColor: "#3DC15A",
     borderTopLeftRadius: 10,
 
     borderTopRightRadius: 10,
@@ -150,7 +153,7 @@ const styles = StyleSheet.create({
   },
   banner: {
     flex: 100,
-    backgroundColor: "#fff",
+    backgroundColor: "#3DC15A",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingVertical: 50,

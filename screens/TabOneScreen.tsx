@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, ScrollView } from "react-native";
 import {
   TouchableOpacity,
   Dimensions,
   StatusBar,
   TextInput,
   Image,
-} from 'react-native';
-import { Text, View } from '../components/Themed';
-import * as Animatable from 'react-native-animatable';
-import { connect } from 'react-redux';
-import { logIn, logOut } from '../redux/actionsFile';
-import { getUserData } from '../redux/selectors';
-import MonthComponent from '../components/Month';
-import FormComponent from './FormComponent';
+} from "react-native";
+import { Icon } from "react-native-elements";
+
+import { Text, View } from "../components/Themed";
+import * as Animatable from "react-native-animatable";
+import { connect } from "react-redux";
+import { logIn, logOut } from "../redux/actionsFile";
+import { getUserData } from "../redux/selectors";
+import MonthComponent from "../components/Month";
+import FormComponent from "./FormComponent";
 
 function TabOneScreen(props) {
   const months = {
     November: Math.round(props.userData.carbonFootPrintSaved / 100),
-    October: '10',
-    September: '4',
-    August: '3',
-    July: '7',
-    June: '5',
+    October: "10",
+    September: "4",
+    August: "3",
+    July: "7",
+    June: "5",
   };
   const [view, setView] = useState(0);
   const timelineComp = Object.keys(months).map((month, id) => (
@@ -49,37 +51,49 @@ function TabOneScreen(props) {
           </Text>
         </View>
         <View style={styles.banner}>
-          <Text style={styles.options}>
-            {' '}
-            <Text style={styles.numberOptions}>
-              {props.userData.energySaved}
+          <View style={styles.OptionsContainer}>
+            <Text style={styles.options}>
+              {" "}
+              <Text style={styles.numberOptions}>
+                {props.userData.energySaved}
+              </Text>{" "}
+              <Text style={styles.subheading}> Kilowatt Energy saved</Text>
             </Text>
-            Kw Energy saved
-          </Text>
-          <Text style={styles.options}>
-            <Text style={styles.numberOptions}>
-              {props.userData.carbonFootPrintSaved}
+          </View>
+          <View style={styles.OptionsContainer}>
+            <Text style={styles.options}>
+              <Text style={styles.numberOptions}>
+                {props.userData.carbonFootPrintSaved}
+              </Text>{" "}
+              <Text style={styles.subheading}> Kg Carbon footprint saved</Text>
             </Text>
-            kg Carbon footprint saved
-          </Text>
-          <Text style={styles.options}>
-            <Text style={styles.numberOptions}>
-              {props.userData.carbonFootPrintSaved / 100}
+          </View>
+          <View style={styles.OptionsContainer}>
+            <Text style={styles.options}>
+              <Text style={styles.numberOptions}>
+                {props.userData.carbonFootPrintSaved / 100}
+              </Text>
+              &nbsp; Trees planted this month
             </Text>
-            &nbsp; Trees planted this month
-          </Text>
+          </View>
         </View>
         <Animatable.Image
           animation="bounceIn"
           duration={1500}
-          source={require('../assets/images/Trees.png')}
+          source={require("../assets/images/Trees.png")}
           style={styles.Trees}
         />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={() => setView(1)}>
-          <Text style={styles.buttonText}>Log in this week’s data</Text>
-        </TouchableOpacity>
+        <Text style={styles.buttonText}>Log in this week’s data</Text>
+        <Icon
+          raised
+          name="plus-circle"
+          size={50}
+          type="font-awesome"
+          color="#3DC15A"
+          onPress={() => setView(1)}
+        />
       </View>
       <View style={styles.timeline}>{timelineComp}</View>
     </ScrollView>
@@ -92,94 +106,105 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderRadius: 15,
-    backgroundColor: '#7A86B1',
+    backgroundColor: "#7A86B1",
     marginLeft: 30,
     marginTop: 30,
   },
+  subheading: {
+    position: "relative",
+    left: -80,
+  },
+  OptionsContainer: {
+    flexDirection: "row",
+    marginRight: "auto",
+    backgroundColor: "#3DC15A",
+  },
   borderBottom: {
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderLeftWidth: 2,
-    borderLeftColor: '#7A86B1',
-    height: '100%',
+    borderLeftColor: "#7A86B1",
+    height: "100%",
     left: 44,
-    position: 'absolute',
+    position: "absolute",
     bottom: 40,
   },
   buttonContainer: {
-    width: '100%',
+    flexDirection: "row",
+    marginRight: "auto",
   },
   borderTop: {
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderLeftWidth: 2,
-    borderLeftColor: '#7A86B1',
-    height: '100%',
+    borderLeftColor: "#7A86B1",
+    height: "100%",
     left: 44,
-    position: 'absolute',
+    position: "absolute",
     top: 30,
   },
   buttonText: {
-    fontSize: 20,
+    paddingLeft: 50,
+    paddingTop: 40,
+    fontSize: 25,
   },
   border: {
-    borderStyle: 'solid',
+    borderStyle: "solid",
     borderLeftWidth: 2,
-    borderLeftColor: '#7A86B1',
-    height: '100%',
+    borderLeftColor: "#7A86B1",
+    height: "100%",
     left: 44,
-    position: 'absolute',
+    position: "absolute",
   },
   timelineContainer: {
-    display: 'flex',
-    flexDirection: 'row',
+    display: "flex",
+    flexDirection: "row",
     height: 100,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
     width: 800,
   },
   timeline: {
-    position: 'relative',
+    position: "relative",
     maxWidth: 800,
-    margin: 'auto',
+    margin: "auto",
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#3DC15A',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#3DC15A",
   },
   Trees: {
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
   },
   scrollView: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   title: {
-    color: 'white',
+    color: "white",
     fontSize: 25,
     padding: 10,
-    textAlign: 'left',
+    textAlign: "left",
     letterSpacing: -0.02,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   options: {
-    color: 'white',
     fontSize: 20,
     padding: 5,
-    textAlign: 'left',
+    textAlign: "left",
     letterSpacing: -0.02,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   numberOptions: {
     // fontFamily: 'Source Sans Pro',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
+    fontStyle: "normal",
+    fontWeight: "bold",
     fontSize: 36,
     lineHeight: 45,
-    color: '#19285F',
+    color: "#812626",
   },
   header: {
     flex: 20,
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingTop: 30,
@@ -187,31 +212,31 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   button: {
-    alignItems: 'center',
-    width: '70%',
+    alignItems: "center",
+    width: "70%",
     height: 70,
-    backgroundColor: '#3DC15A',
-    justifyContent: 'center',
+    backgroundColor: "#3DC15A",
+    justifyContent: "center",
     borderRadius: 20,
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 20,
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   banner: {
     flex: 100,
-    backgroundColor: '#3DC15A',
+    backgroundColor: "#3DC15A",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     paddingVertical: 50,
-    marginRight: 'auto',
+    marginRight: "auto",
 
     paddingHorizontal: 30,
   },
   separator: {
     marginVertical: 30,
     height: 1,
-    width: '80%',
+    width: "80%",
   },
 });
 

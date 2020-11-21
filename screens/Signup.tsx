@@ -54,25 +54,28 @@ function Signup(props) {
         </View>
         <View
           style={{
-            display: 'flex',
-            flexDirection: 'row',
+           
             width: '100%',
             justifyContent: 'space-between',
             backgroundColor: 'white',
             marginTop: 20,
           }}
         >
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => props.setView(2)}
-          >
-            <Text>Sign In Instead</Text>
-          </TouchableOpacity>
+      
           <TouchableOpacity
             style={styles.button}
             onPress={() => handleSignUp()}
           >
             <Text>Sign Up</Text>
+          </TouchableOpacity>
+              <TouchableOpacity
+             style={{
+               marginLeft:40,
+          padding:40
+          }}
+            onPress={() => props.setView(2)}
+          >
+            <Text>Sign In Instead</Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>
