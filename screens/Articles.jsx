@@ -49,7 +49,7 @@ const ENTRIES2 = [
     illustration: "https://i.imgur.com/Kb4BfYO.jpeg",
   },
   {
-    title: "Highest Caron Footprint Food",
+    title: "Highest Carbon Footprint Food",
     subtitle: "Lorem ipsum dolor sit amet",
     illustration: "https://i.imgur.com/qZ2W3WL.jpg",
   },
@@ -131,7 +131,7 @@ const MyCarousel = (props) => {
           {...parallaxProps}
            
         />
-        <Text style={styles.title} numberOfLines={2}   onPress={ ()=>{ Linking.openURL('https://www.sciencedaily.com/releases/2020/11/201111180655.htm')}} >
+        <Text style={styles.title} numberOfLines={2}   onPress={ console.log("RIshabh redirect to articlespage.tsx")} >
           {item.title}
         </Text>
       </View>
