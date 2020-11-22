@@ -57,7 +57,6 @@ function QuestionThree(props) {
         <Text style={styles.text}>
           Which of these devices did you remember to unplug ?{' '}
         </Text>
-
         <View style={styles.buttonContainer}>
           <View style={styles.checkRow}>
             <View style={styles.checkbox}>
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 25,
-    color: '#19285F',
+    color: "black",
     marginLeft: 10,
   },
   logo: {

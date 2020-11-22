@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 25,
-    color: "#19285F",
+    color: "black",
     marginLeft: 10,
   },
   logo: {
