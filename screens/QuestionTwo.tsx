@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon } from "react-native-elements";
+import { Icon } from 'react-native-elements';
 
 import {
   TouchableOpacity,
@@ -15,14 +15,20 @@ import { connect } from 'react-redux';
 import { logIn, logOut } from '../redux/actionsFile';
 import { getUserData } from '../redux/selectors';
 import { TextInput } from 'react-native';
+import { Button } from 'react-native-paper';
 
 function QuestionTwo(props) {
-  const [carbon, setCarbon] = React.useState(877);
+  const [carbon, setCarbon] = React.useState(0);
   const handleNext = () => {
-    const carbo = 877 - carbon;
+    const carbo = carbon != 0 ? 877 - carbon : 877;
     props.addCarbon(Math.round(carbo * 0.453592 * 0.99));
-    props.addKW(carbo)
+    props.addKW(carbo);
     props.setQuestion(2);
+  };
+  const handleSync = () => {
+    const val = Math.random() * 500;
+    setCarbon(val + 600);
+    return;
   };
 
   return (
@@ -44,14 +50,21 @@ function QuestionTwo(props) {
           <TextInput
             // selectionColor="#3DC15A"
             // underlineColor="#3DC15A"
+            defaultValue={carbon.toString()}
             style={styles.textInput}
+            // value = {toString(carbon)}
             keyboardType={'numbers-and-punctuation'}
             enablesReturnKeyAutomatically={true}
             onChangeText={(text) => setCarbon(parseInt(text))}
           />
         </View>
       </View>
-          <View style={styles.nextt}>
+      <View style={styles.button}>
+        <Button color="#f50" onPress={() => handleSync()}>
+          Sync my data from electricity provider{' '}
+        </Button>
+      </View>
+      <View style={styles.nextt}>
         <Icon
           raised
           name="arrow-right"
@@ -63,7 +76,6 @@ function QuestionTwo(props) {
           }}
         />
       </View>
-    
     </SafeAreaView>
   );
 }
@@ -87,9 +99,9 @@ const styles = StyleSheet.create({
     height: 230,
   },
   nextt: {
-    backgroundColor: "#3DC15A",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#3DC15A',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   nextQuestion: {
     backgroundColor: '#812626',
@@ -97,12 +109,14 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   button: {
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: 'white',
     borderRadius: 10,
     paddingVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '46%',
+    width: 400,
+    marginLeft: 'auto',
+    marginRight: 'auto',
     marginTop: 20,
   },
 
