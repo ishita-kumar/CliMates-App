@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import Carousel, { ParallaxImage } from "react-native-snap-carousel";
+import axios from 'axios'
 const { width: screenWidth } = Dimensions.get("window");
 
 // import { Card, ListItem, Button, Icon } from 'react-native-elements'
