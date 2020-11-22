@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Climates from './Climates';
-import Articlespage from "./screens/Articlespage"
 export default function App() {
   const [isUserLoggedin, setLoggedin] = useState(false);
   const isLoadingComplete = useCachedResources();
@@ -20,10 +19,10 @@ export default function App() {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-        <Articlespage/>
+       <Climates />
         </PersistGate>
       </Provider>
     );
   }
 }
-  // <Climates />
+  //
