@@ -20,26 +20,31 @@ const ENTRIES1 = [
     title: "COVID-Delayed Arctic Research",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     illustration: "https://i.imgur.com/L873889.jpg",
+    link:"https://www.sciencedaily.com/releases/2020/11/201111180655.htm"
   },
   {
     title: "Study: Urban Greenery",
     subtitle: "Lorem ipsum dolor sit amet",
     illustration: "https://i.imgur.com/DWVuwMc.jpeg",
+    link:"https://climate.nasa.gov/news/3043/study-urban-greenery-plays-a-surprising-role-in-greenhouse-gas-emissions/"
   },
   {
     title: "Beating Back the Tides",
     subtitle: "Lorem ipsum dolor sit amet et nuncat ",
     illustration: "https://i.imgur.com/qKqZtKW.jpg",
+    link:"https://climate.nasa.gov/news/3041/beating-back-the-tides/"
   },
   {
     title: "Anatomy of Glacial Ice Loss",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     illustration: "https://i.imgur.com/UlEkIeo.jpg",
+    link:"https://climate.nasa.gov/news/3038/the-anatomy-of-glacial-ice-loss/"
   },
   {
     title: "The lone tree, majestic landscape of New Zealand",
     subtitle: "Lorem ipsum dolor sit amet",
     illustration: "https://i.imgur.com/2nCt3Sbl.jpg",
+    link:"https://www.pinterest.co.uk/pin/520728775635616513/"
   },
 ];
 const ENTRIES2 = [
@@ -47,26 +52,31 @@ const ENTRIES2 = [
     title: "Fishings Hidden Carbon Footprint",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     illustration: "https://i.imgur.com/Kb4BfYO.jpeg",
+    link:"https://www.newsbreak.com/california/santa-barbara/news/2105400251376/fishings-hidden-carbon-footprint"
   },
   {
     title: "Highest Carbon Footprint Food",
     subtitle: "Lorem ipsum dolor sit amet",
     illustration: "https://i.imgur.com/qZ2W3WL.jpg",
+    link:"https://ourworldindata.org/food-choice-vs-eating-local"
   },
   {
     title: "Shopping and Sustainability",
     subtitle: "Lorem ipsum dolor sit amet et nuncat ",
     illustration: "https://i.imgur.com/XZcax9C.jpeg",
+    link:"https://sourcingjournal.com/topics/sustainability/us-cotton-trust-protocol-holiday-shopping-sustainability-covid-19-244376/"
   },
   {
     title: "Marijuana and Sustaiability",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     illustration: "https://i.imgur.com/RihhhWt.jpg",
+    link:"https://www.greenentrepreneur.com/article/345097"
   },
   {
     title: "The lone tree, majestic landscape of New Zealand",
     subtitle: "Lorem ipsum dolor sit amet",
     illustration: "https://i.imgur.com/2nCt3Sbl.jpg",
+    link:"https://www.sciencedaily.com/releases/2020/11/201111180655.htm"
   },
 ];
 const ENTRIES3 = [
@@ -74,16 +84,19 @@ const ENTRIES3 = [
     title: "The danger to endangered species",
     subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
     illustration: "https://i.imgur.com/cQ5E4ID.jpg",
+    link:"https://enviroliteracy.org/ecosystems/classifying-species/threatened-endangered-species/#:~:text=The%20biggest%20threats%20include%20habitat,exploitation%2C%20and%20pollution%20and%20disease."
   },
   {
     title: "Red state animals",
     subtitle: "Lorem ipsum dolor sit amet",
     illustration: "https://i.imgur.com/sxuhpRX.png",
+    link:"https://www.nationalgeographic.com/animals/2020/11/methane-flares-scorching-birds-us-landfills/"
   },
   {
     title: "Illegal Snake Killings",
     subtitle: "Lorem ipsum dolor sit amet et nuncat ",
     illustration: "https://i.imgur.com/qxYsdJc.jpg",
+    link:"https://www.wideopenspaces.com/the-states-where-its-illegal-to-kill-snakes/"
   },
 
 ];
@@ -131,7 +144,7 @@ const MyCarousel = (props) => {
           {...parallaxProps}
            
         />
-        <Text style={styles.title} numberOfLines={2}   onPress={ console.log("RIshabh redirect to articlespage.tsx")} >
+        <Text style={styles.title} numberOfLines={2} onPress={ ()=>{ Linking.openURL(item.link)}} >
           {item.title}
         </Text>
       </View>
