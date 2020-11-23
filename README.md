@@ -97,7 +97,19 @@ expo start
 npm start  
 ```
 
+# Backend
+The backend is a flask server thats been deployed at http://34.67.243.162:5000/ hosted on GCP. 
+To run backend locally, install python3, flask and flask cors:
+https://www.python.org/downloads/
+https://flask.palletsprojects.com/en/1.1.x/installation/
+https://flask-cors.readthedocs.io/en/latest/
 
+Then run 
+``` 
+python3 backend.py
+```
+
+The backend only has 3 routes for now and we use mock data for energy consumption for a user. Since this is a prototype, user log in and sign up data is also mocked so that history of user can be seen and all features can be explored (such as dashboard). 
 
 ### Update sources
 
