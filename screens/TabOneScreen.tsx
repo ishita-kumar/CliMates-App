@@ -16,6 +16,7 @@ import { logIn, logOut } from '../redux/actionsFile';
 import { getUserData } from '../redux/selectors';
 import MonthComponent from '../components/Month';
 import FormComponent from './FormComponent';
+import axios from 'axios';
 
 function TabOneScreen(props) {
   const months = {
@@ -27,21 +28,35 @@ function TabOneScreen(props) {
     June: '5',
   };
   const [view, setView] = useState(0);
-  const timelineComp = Object.keys(months).map((month, id) => (
-    <View style={styles.timelineContainer}>
-      <View
-        style={
-          id == 0
-            ? styles.borderTop
-            : id == Object.keys(months).length - 1
-            ? styles.borderBottom
-            : styles.border
+  const [entries, setEntries] = useState({});
+  useEffect(() => {
+    // setEntries(ENTRIES1);
+    axios
+      .get('http://34.67.243.162:5000/profile/data')
+      .then(function (response) {
+        if (response.data.success) {
+          setEntries(response.data.profiles);
         }
-      ></View>
-      <View style={styles.check}></View>
-      <MonthComponent month={month} trees={parseInt(months[month])} />
-    </View>
-  ));
+      })
+      .catch(function (resp) {});
+  }, []);
+  const timelineComp = Object.keys({ ...months, ...entries }).map(
+    (month, id) => (
+      <View style={styles.timelineContainer}>
+        <View
+          style={
+            id == 0
+              ? styles.borderTop
+              : id == Object.keys(months).length - 1
+              ? styles.borderBottom
+              : styles.border
+          }
+        ></View>
+        <View style={styles.check}></View>
+        <MonthComponent month={month} trees={parseInt(months[month])} />
+      </View>
+    )
+  );
   const dashbaord = (
     <ScrollView style={styles.scrollView}>
       <View style={styles.container}>

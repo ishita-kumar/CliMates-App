@@ -16,6 +16,7 @@ import { logIn, logOut } from '../redux/actionsFile';
 import { getUserData } from '../redux/selectors';
 import { TextInput } from 'react-native';
 import { Button } from 'react-native-paper';
+import axios from 'axios';
 
 function QuestionTwo(props) {
   const [carbon, setCarbon] = React.useState(0);
@@ -26,9 +27,19 @@ function QuestionTwo(props) {
     props.setQuestion(2);
   };
   const handleSync = () => {
-    const val = Math.random() * 500;
-    setCarbon(val + 600);
-    return;
+    axios
+      .get('http://34.67.243.162:5000/profile/energy')
+      .then((r) => {
+        console.log(r.data.energy);
+        if (r.data.success) {
+          setCarbon(r.data.energy);
+        }
+      })
+      .catch((response) => {
+        const val = Math.random() * 500;
+        setCarbon(val + 600);
+        return;
+      });
   };
 
   return (
