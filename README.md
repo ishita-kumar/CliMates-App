@@ -111,6 +111,10 @@ python3 backend.py
 
 The backend only has 3 routes for now and we use mock data for energy consumption for a user. Since this is a prototype, user log in and sign up data is also mocked so that history of user can be seen and all features can be explored (such as dashboard). 
 
+# Final app
+manifest: https://exp.host/@rgrishigajra/App/index.exp?sdkVersion=39.0.0
+app expo url: https://expo.io/@rgrishigajra/projects/App
+
 ### Update sources
 
 Some packages usages might change so you should run npm prune & npm install often. A common way to update is by doing. You might also need to add npm audit --f in some cases.
